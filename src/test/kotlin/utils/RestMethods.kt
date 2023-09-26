@@ -61,4 +61,14 @@ object RestMethods {
     fun putRequest() {
         response = request!!.put()
     }
+
+    fun showResponse(){
+        println("Status response: ${response!!.statusCode()}")
+
+        println("Response body: ${response!!.body.asString()}")
+    }
+
+    fun getStatusResponse():Int{
+        return response!!.statusCode()
+    }
 }

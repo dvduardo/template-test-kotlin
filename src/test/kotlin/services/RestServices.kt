@@ -3,8 +3,8 @@ package services
 import io.restassured.http.ContentType
 import utils.ApiPath
 import utils.ApiUrlBase
-import utils.GetProperties
 import utils.RestMethods
+
 object RestServices {
 
     fun post(apiPath: String) {
@@ -24,7 +24,7 @@ object RestServices {
         RestMethods.log()
     }
 
-    fun get(apiPath: String, pathParameters: MutableMap<String, String>) {
+    fun getWithParameters(apiPath: String, pathParameters: MutableMap<String, String>) {
         RestMethods.createRequest()
         RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
         RestMethods.setPathParams(pathParameters)
@@ -33,11 +33,26 @@ object RestServices {
         RestMethods.log()
     }
 
+    fun get(apiPath: String) {
+        RestMethods.createRequest()
+        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
+        RestMethods.setHeader(setHeaders())
+        RestMethods.getRequest()
+        RestMethods.log()
+        RestMethods.showResponse()
+    }
+
+    fun validateResponse(value: Int) {
+        val status = RestMethods.getStatusResponse()
+        if (status != value)
+            throw Exception("Status solicitado [$value] não condiz com o recebido [$status]")
+    }
+
     private fun setHeaders(): MutableMap<String, String> {
         val headers: MutableMap<String, String> = HashMap()
         headers["Content-Type"] = ContentType.JSON.toString()
-        headers["x"] = GetProperties().getProp("header.x")
-        headers["y"] = GetProperties().getProp("header.y")
+//        headers["x"] = GetProperties().getProp("header.x")
+//        headers["y"] = GetProperties().getProp("header.y")
         return headers
     }
 }

@@ -6,7 +6,7 @@ import java.io.IOException
 import java.util.Properties
 
 class GetProperties {
-    private val path = "src/test/resources"
+    private val path = "src/test/resources/"
     private var properties: Properties? = null
 
     fun getProp(valor: String?): String {
