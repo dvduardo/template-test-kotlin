@@ -9,7 +9,7 @@ class GetProperties {
     private val path = "src/test/resources"
     private var properties: Properties? = null
 
-    fun getProperties(valor: String?): String {
+    fun getProp(valor: String?): String {
         try {
             if (properties.isNullOrEmpty()) {
                 properties = Properties()
