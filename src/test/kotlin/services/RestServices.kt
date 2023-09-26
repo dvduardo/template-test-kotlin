@@ -1,6 +1,7 @@
 package services
 
 import io.restassured.http.ContentType
+import utils.ApiPath
 import utils.ApiUrlBase
 import utils.GetProperties
 import utils.RestMethods
@@ -8,7 +9,7 @@ object RestServices {
 
     fun post(apiPath: String) {
         RestMethods.createRequest()
-        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiUrlBase.valueOf(apiPath).path)
+        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
         RestMethods.setHeader(setHeaders())
         RestMethods.postRequest()
         RestMethods.log()
@@ -16,7 +17,7 @@ object RestServices {
 
     fun postWithBody(apiPath: String, body: String) {
         RestMethods.createRequest()
-        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiUrlBase.valueOf(apiPath).path)
+        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
         RestMethods.setHeader(setHeaders())
         RestMethods.setBody(body)
         RestMethods.postRequest()
@@ -25,7 +26,7 @@ object RestServices {
 
     fun get(apiPath: String, pathParameters: MutableMap<String, String>) {
         RestMethods.createRequest()
-        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiUrlBase.valueOf(apiPath).path)
+        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
         RestMethods.setPathParams(pathParameters)
         RestMethods.setHeader(setHeaders())
         RestMethods.getRequest()
