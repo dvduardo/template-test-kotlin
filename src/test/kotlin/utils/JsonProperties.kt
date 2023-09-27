@@ -6,11 +6,11 @@ import java.nio.file.Path
 import java.nio.file.Paths
 
 object JsonProperties {
-    private const val path_file = "./src/test/resources/payload/"
+    private const val PATH_FILE = "./src/test/resources/payload/"
     private lateinit var objeto: JSONObject
 
     fun generatePayload(path:String): JSONObject{
-        return readJsonFile(Paths.get("$path_file$path.json"))
+        return readJsonFile(Paths.get("$PATH_FILE$path.json"))
     }
     private fun readJsonFile(path: Path): JSONObject {
         val contentBuilder = StringBuilder()

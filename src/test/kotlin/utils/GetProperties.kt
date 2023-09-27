@@ -5,15 +5,15 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.util.*
 
-class GetProperties {
-    private val path = "src/test/resources/"
+object GetProperties {
+    private const val PATH = "src/test/resources/"
     private var properties: Properties? = null
 
     fun getProp(valor: String?): String {
         try {
             if (properties.isNullOrEmpty()) {
                 properties = Properties()
-                properties!!.load(FileInputStream("$path$environments.properties"))
+                properties!!.load(FileInputStream("$PATH$environments.properties"))
             }
         } catch (e: IOException) {
             e.printStackTrace()

@@ -47,8 +47,8 @@ object RestServices {
     private fun setHeaders(): MutableMap<String, String> {
         val headers: MutableMap<String, String> = HashMap()
         headers["Content-Type"] = ContentType.JSON.toString()
-        headers["x"] = GetProperties().getProp("header.x")
-        headers["y"] = GetProperties().getProp("header.y")
+        headers["x"] = GetProperties.getProp("header.x")
+        headers["y"] = GetProperties.getProp("header.y")
         return headers
     }
 }
