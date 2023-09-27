@@ -1,5 +1,7 @@
 package utils
 
 enum class ApiPath(val path: String) {
-    TESTE("/usuarios")
+    GET_USERS("/usuarios"),
+    CREATE_USER("/usuarios"),
+    DELETE_USER("/usuarios/{id}")
 }

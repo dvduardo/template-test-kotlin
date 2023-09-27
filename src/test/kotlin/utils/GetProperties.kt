@@ -3,7 +3,7 @@ package utils
 import utils.Environments.environments
 import java.io.FileInputStream
 import java.io.IOException
-import java.util.Properties
+import java.util.*
 
 class GetProperties {
     private val path = "src/test/resources/"

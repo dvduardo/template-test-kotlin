@@ -3,34 +3,30 @@ package services
 import io.restassured.http.ContentType
 import utils.ApiPath
 import utils.ApiUrlBase
+import utils.GetProperties
 import utils.RestMethods
 
 object RestServices {
 
-    fun post(apiPath: String) {
-        RestMethods.createRequest()
-        RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
-        RestMethods.setHeader(setHeaders())
-        RestMethods.postRequest()
-        RestMethods.log()
-    }
-
-    fun postWithBody(apiPath: String, body: String) {
+    fun postWithBody(apiPath: String, body: String):String{
         RestMethods.createRequest()
         RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
         RestMethods.setHeader(setHeaders())
         RestMethods.setBody(body)
         RestMethods.postRequest()
         RestMethods.log()
+        RestMethods.showResponse()
+        return RestMethods.getRespoonseBody()
     }
-
-    fun getWithParameters(apiPath: String, pathParameters: MutableMap<String, String>) {
+    fun deleteWithParam(apiPath: String, param: Map<String, String>):String{
         RestMethods.createRequest()
         RestMethods.setPath(ApiUrlBase.BASE_URL.path, ApiPath.valueOf(apiPath).path)
-        RestMethods.setPathParams(pathParameters)
         RestMethods.setHeader(setHeaders())
-        RestMethods.getRequest()
+        RestMethods.setPathParams(param)
+        RestMethods.deleteRequest()
         RestMethods.log()
+        RestMethods.showResponse()
+        return RestMethods.getRespoonseBody()
     }
 
     fun get(apiPath: String) {
@@ -39,7 +35,7 @@ object RestServices {
         RestMethods.setHeader(setHeaders())
         RestMethods.getRequest()
         RestMethods.log()
-        RestMethods.showResponse()
+//        RestMethods.showResponse()
     }
 
     fun validateResponse(value: Int) {
@@ -51,8 +47,8 @@ object RestServices {
     private fun setHeaders(): MutableMap<String, String> {
         val headers: MutableMap<String, String> = HashMap()
         headers["Content-Type"] = ContentType.JSON.toString()
-//        headers["x"] = GetProperties().getProp("header.x")
-//        headers["y"] = GetProperties().getProp("header.y")
+        headers["x"] = GetProperties().getProp("header.x")
+        headers["y"] = GetProperties().getProp("header.y")
         return headers
     }
 }
